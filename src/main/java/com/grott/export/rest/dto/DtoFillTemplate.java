@@ -6,13 +6,18 @@
 package com.grott.export.rest.dto;
 
 import java.util.Collection;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 /**
  *
  * @author tobia
  */
+@Schema(type=SchemaType.OBJECT, implementation=DtoFillTemplate.class)
 public class DtoFillTemplate {
+    @Schema(type=SchemaType.STRING)
     private String template;
+    @Schema(type=SchemaType.ARRAY, implementation=DtoFillSheet.class)
     private Collection<DtoFillSheet> sheets;
 
     /**

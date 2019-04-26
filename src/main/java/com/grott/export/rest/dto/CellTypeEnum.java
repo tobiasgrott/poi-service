@@ -5,10 +5,14 @@
  */
 package com.grott.export.rest.dto;
 
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 /**
  *
  * @author tobia
  */
+@Schema(type=SchemaType.STRING, enumeration={"TEXT", "NUMBER", "DATE", "TIME", "DATETIME", "BOOLEAN"})
 public enum CellTypeEnum {
     TEXT, NUMBER, DATE, TIME, DATETIME, BOOLEAN;
 }

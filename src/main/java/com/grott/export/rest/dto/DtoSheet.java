@@ -6,14 +6,21 @@
 package com.grott.export.rest.dto;
 
 import java.util.List;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 /**
  *
  * @author tobia
  */
+@Schema(type = SchemaType.OBJECT, implementation = DtoSheet.class)
 public class DtoSheet {
+
+    @Schema(implementation = String.class)
     private String sheetName;
+    @Schema(implementation = String.class, type = SchemaType.ARRAY)
     private List<String> headers;
+    @Schema(implementation = DtoRow.class, type = SchemaType.ARRAY)
     private List<DtoRow> rows;
 
     /**
@@ -57,5 +64,5 @@ public class DtoSheet {
     public void setRows(List<DtoRow> rows) {
         this.rows = rows;
     }
-    
+
 }

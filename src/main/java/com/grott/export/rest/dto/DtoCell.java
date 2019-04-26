@@ -5,12 +5,19 @@
  */
 package com.grott.export.rest.dto;
 
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 /**
  *
  * @author tobia
  */
+@Schema(type=SchemaType.OBJECT, implementation=DtoCell.class)
 public class DtoCell {
+
+    @Schema(type = SchemaType.STRING)
     private String value;
+    @Schema(type = SchemaType.STRING, enumeration = {"TEXT", "NUMBER", "DATE", "TIME", "DATETIME", "BOOLEAN"})
     private CellTypeEnum type;
 
     /**
@@ -40,6 +47,5 @@ public class DtoCell {
     public void setType(CellTypeEnum type) {
         this.type = type;
     }
-    
-    
+
 }
