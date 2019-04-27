@@ -21,41 +21,42 @@ import javax.ws.rs.core.Response;
 @Path("excel/templates")
 public class ExcelTemplateResource {
 
-    @Resource(lookup= "POI_SERVICE")
+    @Resource(lookup = "POI_SERVICE")
     private String templatePath;
 
-    private Collection<String> getTemplates(){
+    private Collection<String> getTemplates() {
         File folder = new File(templatePath);
         File[] listOfFiles = folder.listFiles();
         Collection<String> retval = new ArrayList<>();
-        for(int i=0;i<listOfFiles.length;i++){
-            if(listOfFiles[i].getName().endsWith(".xlsx")){
-                retval.add(listOfFiles[i].getName());
+        for (File file : listOfFiles) {
+            if (file.getName().endsWith(".xlsx")) {
+                retval.add(file.getName());
             }
         }
         return retval;
     }
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAvailableTemplates(){
+    public Response getAvailableTemplates() {
         DtoAvailableTemplates retval = new DtoAvailableTemplates();
         retval.setPath(templatePath);
-        retval.setTemplates(getTemplates());        
+        retval.setTemplates(getTemplates());
         return Response.ok(retval).build();
     }
-    
+
     @POST
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response fillTemplate(DtoFillTemplate input){
+    public Response fillTemplate(DtoFillTemplate input) {
         Collection<String> availableTemplates = getTemplates();
-        if(!availableTemplates.contains(input.getTemplate())){
+        if (!availableTemplates.contains(input.getTemplate())) {
             throw new BadRequestException("Template not existing");
-        } 
+        }
         ExcelTemplateBuilder builder = new ExcelTemplateBuilder( //
-            templatePath+"/"+input.getTemplate(),
-            input.getSheets());
-        
+                templatePath + "/" + input.getTemplate(),
+                input.getSheets());
+
         return Response.ok(builder.createReport()).build();
     }
 }

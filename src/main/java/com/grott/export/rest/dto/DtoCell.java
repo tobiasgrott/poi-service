@@ -17,8 +17,10 @@ public class DtoCell {
 
     @Schema(type = SchemaType.STRING)
     private String value;
-    @Schema(type = SchemaType.STRING, enumeration = {"TEXT", "NUMBER", "DATE", "TIME", "DATETIME", "BOOLEAN"})
+    @Schema(type = SchemaType.STRING, enumeration = {"TEXT", "NUMBER", "DATE", "TIME", "DATETIME", "BOOLEAN","CUSTOM"})
     private CellTypeEnum type;
+    @Schema(type = SchemaType.STRING)
+    private String format;
 
     /**
      * @return the value
@@ -46,6 +48,13 @@ public class DtoCell {
      */
     public void setType(CellTypeEnum type) {
         this.type = type;
+    }
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
     }
 
 }

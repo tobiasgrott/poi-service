@@ -22,6 +22,16 @@ public class DtoFillCell {
     private int column;
     @Schema(type=SchemaType.INTEGER)
     private int row;    
+    @Schema(type=SchemaType.STRING)
+    private String format;
+
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
 
     /**
      * @return the value

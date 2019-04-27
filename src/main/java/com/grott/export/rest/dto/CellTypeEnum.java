@@ -12,7 +12,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
  *
  * @author tobia
  */
-@Schema(type=SchemaType.STRING, enumeration={"TEXT", "NUMBER", "DATE", "TIME", "DATETIME", "BOOLEAN"})
+@Schema(type=SchemaType.STRING, enumeration={"TEXT", "NUMBER", "DATE", "TIME", "DATETIME", "BOOLEAN","CUSTOM"})
 public enum CellTypeEnum {
-    TEXT, NUMBER, DATE, TIME, DATETIME, BOOLEAN;
+    TEXT, NUMBER, DATE, TIME, DATETIME, BOOLEAN, CUSTOM;
 }
