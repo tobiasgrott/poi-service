@@ -13,7 +13,17 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+    
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
-      - name: Create artifact
-        run: mvn package
+
+      - name: Staging
+        run: |
+          mkdir staging 
+          cp target/*.war staging
+          cp target/*.jar staging
+      
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Package
+          path: staging
