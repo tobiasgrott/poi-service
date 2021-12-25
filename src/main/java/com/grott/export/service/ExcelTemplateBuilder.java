@@ -55,10 +55,11 @@ public class ExcelTemplateBuilder {
 
             cellStyle = wb.createCellStyle();
             creationHelper = wb.getCreationHelper();
-            cellStyle.setDataFormat(creationHelper.createDataFormat().getFormat(DefaultDateFormat.DATETIME.getFormat()));
+            cellStyle
+                    .setDataFormat(creationHelper.createDataFormat().getFormat(DefaultDateFormat.DATETIME.getFormat()));
             cellStyles.put(CellTypeEnum.DATETIME, cellStyle);
 
-            cellStyle =  wb.createCellStyle();
+            cellStyle = wb.createCellStyle();
             creationHelper = wb.getCreationHelper();
             cellStyle.setDataFormat(creationHelper.createDataFormat().getFormat(DefaultDateFormat.TIME.getFormat()));
             cellStyles.put(CellTypeEnum.TIME, cellStyle);
@@ -75,39 +76,43 @@ public class ExcelTemplateBuilder {
                 }
                 for (DtoFillCell dtoCell : dtoSheet.getCells()) {
                     XSSFRow row = spreadSheet.getRow(dtoCell.getRow());
-                    if(row == null){
+                    if (row == null) {
                         row = spreadSheet.createRow(dtoCell.getRow());
-                    }  
-                    XSSFCell cell = row.createCell(dtoCell.getColumn());
-                    if(dtoCell.getValue()==null){
-                        cell.setCellType(CellType.BLANK);
-                    }else{
-                    switch (dtoCell.getType()) {
-                        case BOOLEAN:
-                            cell.setCellType(CellType.BOOLEAN);
-                            cell.setCellValue(Boolean.valueOf(dtoCell.getValue()));
-                            break;
-                        case DATE:
-                            cell.setCellValue(java.sql.Date.valueOf(LocalDate.parse(dtoCell.getValue())));
-                            cell.setCellStyle(cellStyles.get(CellTypeEnum.DATE));
-                            break;
-                        case DATETIME:
-                            cell.setCellValue(java.sql.Timestamp.valueOf(LocalDateTime.parse(dtoCell.getValue())));
-                            cell.setCellStyle(cellStyles.get(CellTypeEnum.DATETIME));
-                            break;
-                        case NUMBER:
-                            cell.setCellType(CellType.NUMERIC);
-                            cell.setCellValue(Double.valueOf(dtoCell.getValue()));
-                            break;
-                        case TEXT:
-                            cell.setCellType(CellType.STRING);
-                            cell.setCellValue(dtoCell.getValue());
-                            break;
-                        case TIME:
-                            cell.setCellValue(java.sql.Time.valueOf(LocalTime.parse(dtoCell.getValue())));
-                            cell.setCellStyle(cellStyles.get(CellTypeEnum.TIME));
-                            break;
                     }
+                    XSSFCell cell = row.createCell(dtoCell.getColumn());
+                    if (dtoCell.getValue() == null) {
+                        cell.setCellType(CellType.BLANK);
+                    } else {
+                        switch (dtoCell.getType()) {
+                            case BOOLEAN:
+                                cell.setCellType(CellType.BOOLEAN);
+                                cell.setCellValue(Boolean.valueOf(dtoCell.getValue()));
+                                break;
+                            case DATE:
+                                cell.setCellValue(java.sql.Date.valueOf(LocalDate.parse(dtoCell.getValue())));
+                                cell.setCellStyle(cellStyles.get(CellTypeEnum.DATE));
+                                break;
+                            case DATETIME:
+                                cell.setCellValue(java.sql.Timestamp.valueOf(LocalDateTime.parse(dtoCell.getValue())));
+                                cell.setCellStyle(cellStyles.get(CellTypeEnum.DATETIME));
+                                break;
+                            case NUMBER:
+                                cell.setCellType(CellType.NUMERIC);
+                                cell.setCellValue(Double.valueOf(dtoCell.getValue()));
+                                break;
+                            case TEXT:
+                                cell.setCellType(CellType.STRING);
+                                cell.setCellValue(dtoCell.getValue());
+                                break;
+                            case TIME:
+                                cell.setCellValue(java.sql.Time.valueOf(LocalTime.parse(dtoCell.getValue())));
+                                cell.setCellStyle(cellStyles.get(CellTypeEnum.TIME));
+                                break;
+                            case CUSTOM:
+                                cell.setCellValue(dtoCell.getValue());
+                                cell.setCellStyle(cellStyles.get(CellTypeEnum.TEXT));
+                                break;
+                        }
                     }
                 }
             }
