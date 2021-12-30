@@ -16,7 +16,10 @@ jobs:
           cache: 'maven'
     
       - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots verify
+        run: |
+          mvn --batch-mode --update-snapshots verify
+          mvn versions:display-dependency-updates
+          mvn versions:display-plugin-updates
 
       - name: Staging
         run: |
