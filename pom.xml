@@ -9,15 +9,14 @@
 	<packaging>war</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
-		<poi.version>5.2.0</poi.version>
-		<jakartaee.version>9.1.0</jakartaee.version>
-		<microprofile.version>5.0</microprofile.version>
-		
-		<maven.war.plugin.version>3.3.2</maven.war.plugin.version>
+		<poi.version>5.2.4</poi.version>
+		<jakartaee.version>10.0.0</jakartaee.version>
+		<microprofile.version>6.1</microprofile.version>
+		<maven.war.plugin.version>3.4.0</maven.war.plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
