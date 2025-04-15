@@ -13,7 +13,7 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
-		<poi.version>5.2.4</poi.version>
+		<poi.version>5.4.0</poi.version>
 		<jakartaee.version>10.0.0</jakartaee.version>
 		<microprofile.version>6.1</microprofile.version>
 		<maven.war.plugin.version>3.4.0</maven.war.plugin.version>
